@@ -54,6 +54,7 @@ class Chatbot {
                 this.addMessage(response, 'bot');
             } else {
                 throw new Error('Réponse vide de l'API');
+                )
             }
         } catch (error) {
             this.removeTypingIndicator();
@@ -136,6 +137,7 @@ class Chatbot {
 
             if (!response.ok) {
                 throw new Error('Erreur de communication avec l'API');
+                )
             }
 
             const data = await response.json();
