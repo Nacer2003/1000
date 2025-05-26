@@ -1,0 +1,435 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SentimentHub - Analyse de Sentiments</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'assets/css/styles.css' %}">
+    
+</head>
+<body class="dark-theme">
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h3>SentimentHub</h3>
+                </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="#testimonials" class="nav-link">Avis</a></li>
+                        <li><a href="#how-it-works" class="nav-link">Comment ça marche</a></li>
+                        <li><a href="#demo" class="nav-link">Démo</a></li>
+                        <li><a href="#upload" class="nav-link cta-button-small">Commencer</a></li>
+                    </ul>
+                </nav>
+                <div class="theme-toggle">
+                    <i class="fas fa-sun"></i>
+                    <label class="switch">
+                        <input type="checkbox" id="theme-switch">
+                        <span class="slider round"></span>
+                    </label>
+                    <i class="fas fa-moon"></i>
+                </div>
+                <button class="mobile-menu-btn" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <div class="hero-content">
+                <h2 class="hero-title">Découvrez les émotions cachées dans vos données</h2>
+                <p class="hero-description">Analysez les sentiments de vos retours clients pour prendre des décisions éclairées et améliorer votre service</p>
+                <div class="cta-buttons">
+                    <a href="{% url 'upload_csv' %}" class="cta-button primary">
+                        <i class="fas fa-file-upload"></i> Importer un CSV
+                    </a> 
+                    <a href="#demo" class="cta-button secondary">
+                        <i class="fas fa-play-circle"></i> Voir la démo
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% comment %} <div class="wave-container">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                <path fill="currentColor" fill-opacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,138.7C960,139,1056,117,1152,106.7C1248,96,1344,96,1392,96L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+            </svg>
+        </div> {% endcomment %}
+        <div class="wave-container">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                <path fill="currentColor" fill-opacity="1"
+                    d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,138.7C960,139,1056,117,1152,106.7C1248,96,1344,96,1392,96L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+                </path>
+            </svg>
+        </div>
+    </header>
+
+    <main>
+        <!-- Section Fonctionnalités -->
+        <section id="features" class="features-section">
+            <div class="container">
+                <h2 class="section-title">Pourquoi choisir SentimentHub ?</h2>
+                <p class="section-description">Des outils puissants pour transformer vos données en insights actionnables</p>
+                
+                <div class="features-grid">
+                    <div class="feature-card" data-aos="fade-up">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <h3>Analyses visuelles</h3>
+                        <p>Visualisations claires et interactives pour comprendre rapidement les tendances émotionnelles</p>
+                    </div>
+                    
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="feature-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3>IA avancée</h3>
+                        <p>Algorithmes sophistiqués pour une analyse précise des nuances émotionnelles dans les textes</p>
+                    </div>
+                    
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="feature-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>Traitement rapide</h3>
+                        <p>Analyse instantanée de milliers de commentaires pour des résultats en quelques secondes</p>
+                    </div>
+                    
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="feature-icon">
+                            <i class="fas fa-file-export"></i>
+                        </div>
+                        <h3>Export flexible</h3>
+                        <p>Générez des rapports détaillés et exportez vos analyses dans différents formats</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Comment ça marche -->
+        <section id="how-it-works" class="how-works-section">
+            <div class="container">
+                <h2 class="section-title">Comment ça marche ?</h2>
+                <p class="section-description">Trois étapes simples pour extraire la valeur de vos données textuelles</p>
+                
+                <div class="steps-container">
+                    <div class="step" data-aos="fade-right">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Importez vos données</h3>
+                            <p>Téléchargez votre fichier CSV contenant les commentaires ou retours clients à analyser</p>
+                        </div>
+                        <div class="step-image">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="step" data-aos="fade-up">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Analyse automatique</h3>
+                            <p>Notre système traite le texte et identifie les sentiments (positif, neutre, négatif)</p>
+                        </div>
+                        <div class="step-image">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="step" data-aos="fade-left">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Visualisez les résultats</h3>
+                            <p>Consultez les tableaux de bord interactifs et téléchargez vos rapports détaillés</p>
+                        </div>
+                        <div class="step-image">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Démo -->
+        <section id="demo" class="demo-section">
+            <div class="container">
+                <h2 class="section-title">Découvrez SentimentHub en action</h2>
+                <p class="section-description">Explorez un exemple d'analyse sur des données de démonstration</p>
+                
+                <div class="demo-container">
+                    <div class="tabs">
+                        <button class="tab-btn active" data-tab="overview">Vue d'ensemble</button>
+                        <button class="tab-btn" data-tab="details">Détails</button>
+                        <button class="tab-btn" data-tab="keywords">Mots-clés</button>
+                    </div>
+                    
+                    <div class="tab-content active" id="overview">
+                        <div class="chart-container">
+                            <canvas id="sentimentChart" width="400" height="400"></canvas>
+                        </div>
+                        <div class="chart-info">
+                            <div class="stat-card positive">
+                                <h4>Positifs</h4>
+                                <p class="stat-value">65%</p>
+                                <p class="stat-change"><i class="fas fa-arrow-up"></i> +5% vs période précédente</p>
+                            </div>
+                            <div class="stat-card neutral">
+                                <h4>Neutres</h4>
+                                <p class="stat-value">23%</p>
+                                <p class="stat-change"><i class="fas fa-equals"></i> 0% vs période précédente</p>
+                            </div>
+                            <div class="stat-card negative">
+                                <h4>Négatifs</h4>
+                                <p class="stat-value">12%</p>
+                                <p class="stat-change"><i class="fas fa-arrow-down"></i> -3% vs période précédente</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="details">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Commentaire</th>
+                                    <th>Sentiment</th>
+                                    <th>Score</th>
+                                </tr>
+                            </thead>
+                            <tbody id="sentimentTableBody">
+                                <!-- Rempli via JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="tab-content" id="keywords">
+                        <div class="wordcloud-container">
+                            <div id="wordcloud"></div>
+                        </div>
+                        <div class="keywords-info">
+                            <div class="keyword-list positive">
+                                <h4>Mots positifs fréquents</h4>
+                                <ul id="positiveKeywords">
+                                    <!-- Rempli via JavaScript -->
+                                </ul>
+                            </div>
+                            <div class="keyword-list negative">
+                                <h4>Mots négatifs fréquents</h4>
+                                <ul id="negativeKeywords">
+                                    <!-- Rempli via JavaScript -->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-controls">
+                        <button id="loadDemoData" class="btn secondary">
+                            <i class="fas fa-sync-alt"></i> Charger d'autres données
+                        </button>
+                        <button id="exportDemoData" class="btn">
+                            <i class="fas fa-download"></i> Exporter
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="testimonials-section">
+            <div class="container">
+              <h2 class="section-title">Ce que nos clients disent</h2>
+              
+              <div id="testimonialsSlider" class="testimonials-slider">
+                <!-- Témoignage 1 -->
+                <div class="testimonial-card">
+                  <div class="testimonial-content">
+                    SentimentHub a transformé notre manière d'analyser les retours clients. Nous avons découvert des insights que nous n'aurions jamais trouvés autrement.
+                  </div>
+                  <div class="testimonial-author">
+                    <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Sophie Martin" class="author-avatar">
+                    <div class="author-info">
+                      <h4>Sophie Martin</h4>
+                      <p>Directrice Marketing, TechSolutions</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Témoignage 2 -->
+                <div class="testimonial-card">
+                  <div class="testimonial-content">
+                    Grâce à SentimentHub, nous avons pu identifier rapidement les points d'amélioration de notre service client. Un outil indispensable !
+                  </div>
+                  <div class="testimonial-author">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Thomas Dubois" class="author-avatar">
+                    <div class="author-info">
+                      <h4>Thomas Dubois</h4>
+                      <p>Responsable CX, InnovTech</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Témoignage 3 -->
+                <div class="testimonial-card">
+                  <div class="testimonial-content">
+                    L'analyse de sentiment proposée par SentimentHub est d'une précision remarquable. Nous l'utilisons quotidiennement pour améliorer nos produits.
+                  </div>
+                  <div class="testimonial-author">
+                    <img src="https://randomuser.me/api/portraits/women/38.jpg" alt="Marie Leroy" class="author-avatar">
+                    <div class="author-info">
+                      <h4>Marie Leroy</h4>
+                      <p>CEO, DataInsight</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="slider-controls">
+                <button id="prevTestimonial" class="slider-btn">
+                  <i class="fas fa-chevron-left"></i>
+                </button>
+                
+                <div class="slider-dots">
+                  <span class="dot active"></span>
+                  <span class="dot"></span>
+                  <span class="dot"></span>
+                </div>
+                
+                <button id="nextTestimonial" class="slider-btn">
+                  <i class="fas fa-chevron-right"></i>
+                </button>
+              </div>
+            </div>
+          </section>
+
+        <!-- Section CTA -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Prêt à découvrir les sentiments cachés dans vos données ?</h2>
+                    <p>Commencez dès maintenant en important votre premier fichier CSV</p>
+                    <a href="#upload" class="cta-button primary">
+                        <i class="fas fa-rocket"></i> Démarrer maintenant
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <i class="fas fa-smile-beam logo-icon"></i>
+                        <h4>SentimentHub</h4>
+                    </div>
+                    <p>L'outil ultime pour comprendre les émotions de vos clients</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Navigation</h3>
+                    <ul class="footer-links">
+                        <li><a href="#features">Fonctionnalités</a></li>
+                        <li><a href="#how-it-works">Comment ça marche</a></li>
+                        <li><a href="#demo">Démo</a></li>
+                        <li><a href="#upload">Commencer</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Ressources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Tutoriels</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Légal</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Conditions d'utilisation</a></li>
+                        <li><a href="#">Politique de confidentialité</a></li>
+                        <li><a href="#">Mentions légales</a></li>
+                        <li><a href="#">Cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 SentimentHub. Tous droits réservés.</p>
+                <p>Conçu avec <i class="fas fa-heart"></i> au Maroc</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modale Export -->
+    <div id="exportModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Exporter les résultats</h3>
+                <button class="close-modal" id="closeExportModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="export-options">
+                    <div class="export-option">
+                        <input type="radio" id="exportCSV" name="exportFormat" value="csv" checked>
+                        <label for="exportCSV">
+                            <i class="fas fa-file-csv"></i>
+                            <span>CSV</span>
+                            <p>Données brutes avec scores détaillés</p>
+                        </label>
+                    </div>
+                    <div class="export-option">
+                        <input type="radio" id="exportPDF" name="exportFormat" value="pdf">
+                        <label for="exportPDF">
+                            <i class="fas fa-file-pdf"></i>
+                            <span>PDF</span>
+                            <p>Rapport complet avec graphiques</p>
+                        </label>
+                    </div>
+                    <div class="export-option">
+                        <input type="radio" id="exportPNG" name="exportFormat" value="png">
+                        <label for="exportPNG">
+                            <i class="fas fa-file-image"></i>
+                            <span>Images</span>
+                            <p>Graphiques en haute résolution</p>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="cancelExport" class="btn secondary">Annuler</button>
+                <button id="confirmExport" class="btn primary">
+                    <i class="fas fa-download"></i> Exporter
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="{% static 'assets/js/main.js' %}"></script>
+<script src="{% static 'assets/js/theme.js' %}"></script>
+<script src="{% static 'assets/js/visualization.js' %}"></script>
+<script src="{% static 'assets/js/navigation.js' %}"></script>
+<script src="{% static 'assets/js/testimonials.js' %}"></script>
+<script src="{% static 'assets/js/faq.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://d3js.org/d3-cloud.v1.min.js"></script>
+<script src="{% static 'assets/js/script.js' %}"></script>
+
+
+
+</body>
+</html>
